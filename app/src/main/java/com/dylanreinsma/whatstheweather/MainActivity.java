@@ -69,11 +69,22 @@ public class MainActivity extends AppCompatActivity {
 
                 JSONArray arr = new JSONArray(weatherInfo);
 
+                String message = "";
+
                 for (int i=0; i < arr.length(); i++) {
                     JSONObject jsonPart = arr.getJSONObject(i);
 
-                    Log.i("main",jsonPart.getString("main"));
-                    Log.i("description",jsonPart.getString("description"));
+                    String main = jsonPart.getString("main");
+                    String description = jsonPart.getString("description");
+
+                    if (!main.equals("") && !description.equals("")) {
+                        message += main + ": " +description;
+                    }
+
+                }
+
+                if (!message.equals("")) {
+                    textView2.setText(message);
                 }
 
             } catch (Exception e) {
@@ -86,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void getWeather(View view) {
         location = editText.getText().toString();
         DownloadTask task = new DownloadTask();
-        task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=cfc77708276b95e05463cb4d4a04884b/");
+        task.execute("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=cfc77708276b95e05463cb4d4a04884b");
     }
 
     @Override
