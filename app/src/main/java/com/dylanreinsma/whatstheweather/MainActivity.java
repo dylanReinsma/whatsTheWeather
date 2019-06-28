@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     String description = jsonPart.getString("description");
 
                     if (!main.equals("") && !description.equals("")) {
-                        message += main + ": " +description;
+                        message += main + ": " + description;
                     }
 
                 }
